@@ -1,15 +1,14 @@
 language: node_js
 
 node_js:
-  - "8"
+  - "10"
 
 install:
-  - yarn
+  - yarn --frozen-lockfile
 
 script:
   - yarn run lint
   - yarn run test
-  - yarn run build:lib
 
 after_success:
   - yarn run coveralls

@@ -23,7 +23,7 @@ import * as React from 'react';
 import { v4 } from 'uuid';
 import Icon from '@material-ui/icons/CropLandscape';
 
-import { LayoutPluginConfig } from 'ory-editor-core/lib/service/plugin/classes';
+import { LayoutPluginConfig } from '@react-page/core/lib/service/plugin/classes';
 import { BackgroundSettings } from './types/settings';
 import { BackgroundState } from './types/state';
 import { BackgroundProps } from './types/component';
@@ -31,17 +31,19 @@ import BackgroundComponent from './Component';
 import { defaultSettings } from './default/settings';
 
 const createPlugin = (settings: BackgroundSettings) => {
+  const mergedSettings = { ...defaultSettings, ...settings};
   const plugin: LayoutPluginConfig<BackgroundState> = {
     Component: (props: BackgroundProps) => (
-      <BackgroundComponent {...props} {...defaultSettings} {...settings} />
+      <BackgroundComponent {...props} {...mergedSettings} />
     ),
     name: 'ory/editor/core/layout/background',
     version: '0.0.1',
 
-    text: 'Background',
+    text: mergedSettings.translations.pluginName,
+    description: mergedSettings.translations.pluginDescription,
     IconComponent: <Icon />,
 
-    createInitialChildren: () => ({
+    createInitialChildren: settings.getInitialChildren || (() => ({
       id: v4(),
       rows: [
         {
@@ -57,7 +59,7 @@ const createPlugin = (settings: BackgroundSettings) => {
           ],
         },
       ],
-    }),
+    })),
 
     handleFocusNextHotKey: () => Promise.reject(),
     handleFocusPreviousHotKey: () => Promise.reject(),

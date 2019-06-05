@@ -4,10 +4,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
-import { ImageUpload } from 'ory-editor-ui';
+import { ImageUpload } from '@react-page/ui';
 
-import { BottomToolbar } from 'ory-editor-ui';
-import { darkTheme, default as ThemeProvider } from 'ory-editor-ui/lib/ThemeProvider';
+import { BottomToolbar } from '@react-page/ui';
+import { darkTheme, default as ThemeProvider } from '@react-page/ui/lib/ThemeProvider';
 
 const ImageDefaultControls: React.SFC<ImageControlsProps> = props => {
   const { Renderer, handleImageLoaded, handleImageUploaded, handleChange, readOnly, focused } = props;
@@ -20,6 +20,7 @@ const ImageDefaultControls: React.SFC<ImageControlsProps> = props => {
             {props.imageUpload && (
               <React.Fragment>
                 <ImageUpload
+                  translations={props.translations}
                   imageUpload={props.imageUpload}
                   imageLoaded={handleImageLoaded}
                   imageUploaded={handleImageUploaded}
@@ -28,13 +29,13 @@ const ImageDefaultControls: React.SFC<ImageControlsProps> = props => {
                   variant="body1"
                   style={{ marginLeft: '20px', marginRight: '20px' }}
                 >
-                  OR
+                  {props.translations.or}
                 </Typography>
               </React.Fragment>
             )}
             <TextField
-              placeholder="http://example.com/image.png"
-              label={props.imageUpload ? 'I have a URL' : 'Image URL'}
+              placeholder={props.translations.srcPlaceholder}
+              label={props.imageUpload ? props.translations.haveUrl : props.translations.imageUrl}
               name="src"
               style={{ flex: 1 }}
               value={props.state.src}
@@ -42,8 +43,8 @@ const ImageDefaultControls: React.SFC<ImageControlsProps> = props => {
             />
           </div>
           <TextField
-            placeholder="http://example.com"
-            label="Link location (url)"
+            placeholder={props.translations.hrefPlaceholder}
+            label={props.translations.hrefLabel}
             name="href"
             style={{ width: '512px' }}
             value={props.state.href}
@@ -59,7 +60,7 @@ const ImageDefaultControls: React.SFC<ImageControlsProps> = props => {
                 onChange={handleChange}
               />
             }
-            label="Open in new window"
+            label={props.translations.openNewWindow}
           />
         </BottomToolbar>
       </ThemeProvider>}

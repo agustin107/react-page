@@ -25,10 +25,10 @@ import { v4 } from 'uuid';
 import Icon from '@material-ui/icons/CropLandscape';
 import {
   LayoutPluginConfig
-} from 'ory-editor-core/lib/service/plugin/classes';
+} from '@react-page/core/lib/service/plugin/classes';
 import { ParallaxBackgroundSettings } from './types/settings';
 import { ParallaxBackgroundState } from './types/state';
-import { ContentPluginProps } from 'ory-editor-core/lib/service/plugin/classes';
+import { ContentPluginProps } from '@react-page/core/lib/service/plugin/classes';
 import Component from './Component';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -48,7 +48,7 @@ const createPlugin: (settings: ParallaxBackgroundSettings) => LayoutPluginConfig
   text: 'Parallax Background (deprecated)',
   IconComponent: <Icon />,
 
-  createInitialChildren: () => ({
+  createInitialChildren: settings.getInitialChildren || (() => ({
     id: v4(),
     rows: [
       {
@@ -64,7 +64,7 @@ const createPlugin: (settings: ParallaxBackgroundSettings) => LayoutPluginConfig
         ],
       },
     ],
-  }),
+  })),
 
   handleFocusNextHotKey: () => Promise.reject(),
   handleFocusPreviousHotKey: () => Promise.reject(),

@@ -22,9 +22,9 @@
 
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { darkTheme } from 'ory-editor-ui/lib/ThemeProvider';
+import { darkTheme } from '@react-page/ui/lib/ThemeProvider';
 
-import { BottomToolbar } from 'ory-editor-ui';
+import { BottomToolbar } from '@react-page/ui';
 import { VideoControlsProps } from '../types/controls';
 import { defaultVideoState } from '../default/state';
 
@@ -34,8 +34,6 @@ const Form: React.SFC<VideoControlsProps> = props => {
     focused,
     changeSrcPreview,
     commitSrc,
-    label,
-    placeholder,
     readOnly,
     state: { src } = defaultVideoState,
   } = props;
@@ -45,8 +43,8 @@ const Form: React.SFC<VideoControlsProps> = props => {
       {!readOnly && (
         <BottomToolbar open={focused} theme={darkTheme}>
           <TextField
-            placeholder={placeholder}
-            label={label}
+            placeholder={props.translations.placeholder}
+            label={props.translations.label}
             style={{ width: '512px' }}
             value={src}
             onChange={e => changeSrcPreview(e.target.value)}

@@ -25,13 +25,13 @@ Next, open the file *src/components/App.js* and include the ORY Editor:
 
 ```jsx
 import React, { Component } from 'react';
-import Editor, { Editable, Controls, createEmptyState } from 'ory-editor'
+import Editor, { Editable, Controls, createEmptyState } from '@react-page/react-page'
 import logo from './logo.svg';
 import './App.css';
 import 'ory-editor/dist/styles.css';
 
 // The react-tap-event-plugin is required by material-ui, see:
-//  https://github.com/callemall/material-ui#react-tap-event-plugin
+//  https://github.com/mui-org/material-ui#react-tap-event-plugin
 require('react-tap-event-plugin')()
 
 

@@ -25,8 +25,8 @@ import Button from '../Button';
 
 import { connect } from 'react-redux';
 
-import { layoutMode } from 'ory-editor-core/lib/actions/display';
-import { isLayoutMode } from 'ory-editor-core/lib/selector/display';
+import { layoutMode } from '@react-page/core/lib/actions/display';
+import { isLayoutMode } from '@react-page/core/lib/selector/display';
 import { createStructuredSelector } from 'reselect';
 
 export interface InnerReduxProps {
@@ -37,12 +37,16 @@ export interface InnerActionProps {
   layoutMode: React.MouseEventHandler<HTMLElement>;
 }
 
-export type InnerProps = InnerReduxProps & InnerActionProps;
+interface OwnProps {
+  label: string;
+}
+
+export type InnerProps = InnerReduxProps & InnerActionProps & OwnProps;
 
 const Inner: React.SFC<InnerProps> = props => (
   <Button
     icon={<ViewQuilt />}
-    description="Move things"
+    description={props.label}
     active={props.isLayoutMode}
     onClick={props.layoutMode}
   />

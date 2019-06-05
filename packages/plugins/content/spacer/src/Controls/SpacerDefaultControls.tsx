@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SpacerControlsProps } from '../types/controls';
 import { Resizable } from 'react-resizable';
-import { BottomToolbar } from 'ory-editor-ui';
-import { darkTheme } from 'ory-editor-ui/lib/ThemeProvider';
+import { BottomToolbar } from '@react-page/ui';
+import { darkTheme } from '@react-page/ui/lib/ThemeProvider';
 import { defaultSpacerState } from './../default/state';
 import classNames from 'classnames';
 import TextField from '@material-ui/core/TextField';
@@ -39,7 +39,7 @@ const SpacerDefaultControls: React.SFC<SpacerControlsProps> = props => {
             <BottomToolbar open={focused} theme={darkTheme}>
               <TextField
                 placeholder="24"
-                label="Element height (px)"
+                label={props.translations.elementHeightLabel}
                 style={{ width: '512px' }}
                 value={height}
                 onChange={e =>

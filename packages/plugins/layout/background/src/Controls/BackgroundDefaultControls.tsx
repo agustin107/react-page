@@ -6,8 +6,8 @@ import Switch from '@material-ui/core/Switch';
 import ColorComponent from './sub/Color';
 import LinearGradientComponent from './sub/LinearGradient';
 import ImageComponent from './sub/Image';
-import { BottomToolbar } from 'ory-editor-ui';
-import ThemeProvider, { darkTheme } from 'ory-editor-ui/lib/ThemeProvider';
+import { BottomToolbar } from '@react-page/ui';
+import ThemeProvider, { darkTheme } from '@react-page/ui/lib/ThemeProvider';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import ImageIcon from '@material-ui/icons/Landscape';
@@ -73,7 +73,7 @@ class BackgroundDefaultControls extends React.Component<
                         }
                       />
                     }
-                    label="Image"
+                    label={this.props.translations.imageMode}
                     value={ModeEnum.IMAGE_MODE_FLAG}
                   />
                 )}
@@ -88,7 +88,7 @@ class BackgroundDefaultControls extends React.Component<
                         }
                       />
                     }
-                    label="Color"
+                    label={this.props.translations.colorMode}
                     value={ModeEnum.COLOR_MODE_FLAG}
                   />
                 )}
@@ -104,7 +104,7 @@ class BackgroundDefaultControls extends React.Component<
                         }
                       />
                     }
-                    label="Gradient"
+                    label={this.props.translations.gradientMode}
                     value={ModeEnum.GRADIENT_MODE_FLAG}
                   />
                 )}
@@ -114,7 +114,7 @@ class BackgroundDefaultControls extends React.Component<
               <div style={{ display: 'flex' }}>
                 <div style={{ flex: '1', marginRight: '8px' }}>
                   <Typography variant="body1" id="linear-gradient-darken-label">
-                    Darken ({(darkenFinal * 100).toFixed(0)}
+                    {this.props.translations.darken} ({(darkenFinal * 100).toFixed(0)}
                     %)
                   </Typography>
                   <Slider
@@ -134,7 +134,7 @@ class BackgroundDefaultControls extends React.Component<
                     variant="body1"
                     id="linear-gradient-lighten-label"
                   >
-                    Lighten ({(lightenFinal * 100).toFixed(0)}
+                    {this.props.translations.lighten} ({(lightenFinal * 100).toFixed(0)}
                     %)
                   </Typography>
                   <Slider
@@ -158,7 +158,7 @@ class BackgroundDefaultControls extends React.Component<
                       checked={hasPadding}
                     />
                   }
-                  label="Use padding"
+                  label={this.props.translations.usePadding}
                 />
               </div>
             </BottomToolbar>
@@ -172,7 +172,7 @@ class BackgroundDefaultControls extends React.Component<
     const {
       state: { modeFlag = this.props.defaultModeFlag },
     } = this.props;
-    let label = 'ON/OFF';
+    let label = this.props.translations.onOff;
     switch (this.state.mode) {
       case ModeEnum.COLOR_MODE_FLAG:
         // label = 'Use color'

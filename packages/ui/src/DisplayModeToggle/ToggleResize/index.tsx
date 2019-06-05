@@ -22,8 +22,8 @@
 import * as React from 'react';
 import Resize from '@material-ui/icons/SettingsOverscan';
 import { connect } from 'react-redux';
-import { resizeMode } from 'ory-editor-core/lib/actions/display';
-import { isResizeMode } from 'ory-editor-core/lib/selector/display';
+import { resizeMode } from '@react-page/core/lib/actions/display';
+import { isResizeMode } from '@react-page/core/lib/selector/display';
 import { createStructuredSelector } from 'reselect';
 
 import Button from '../Button/index';
@@ -36,12 +36,16 @@ export interface InnerActionProps {
   resizeMode: React.MouseEventHandler<HTMLElement>;
 }
 
-export type InnerProps = InnerReduxProps & InnerActionProps;
+interface OwnProps {
+  label: string;
+}
+
+export type InnerProps = InnerReduxProps & InnerActionProps & OwnProps;
 
 const Inner: React.SFC<InnerProps> = props => (
   <Button
     icon={<Resize />}
-    description="Resize things"
+    description={props.label}
     active={props.isResizeMode}
     onClick={props.resizeMode}
   />

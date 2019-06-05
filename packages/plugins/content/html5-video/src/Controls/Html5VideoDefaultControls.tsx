@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Html5VideoControlsProps } from './../types/controls';
 import TextField from '@material-ui/core/TextField';
-import { BottomToolbar } from 'ory-editor-ui';
-import { darkTheme } from 'ory-editor-ui/lib/ThemeProvider';
+import { BottomToolbar } from '@react-page/ui';
+import { darkTheme } from '@react-page/ui/lib/ThemeProvider';
 import { defaultHtml5VideoState } from '../default/state';
 
 export interface Html5VideoDefaultControlsProps {}
@@ -24,8 +24,8 @@ const Html5VideoDefaultControls: React.SFC<Html5VideoControlsProps> = props => {
       {!readOnly && focused && (
         <BottomToolbar open={focused} theme={darkTheme}>
           <TextField
-            placeholder="https://example.com/video.webm"
-            label="Video url"
+            placeholder={props.translations.urlPlaceholder}
+            label={props.translations.urlLabel}
             onChange={e => changeUrlPreview(e.target.value)}
             onBlur={commitUrl}
             value={url}

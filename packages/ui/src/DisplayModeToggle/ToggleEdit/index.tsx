@@ -25,8 +25,8 @@ import Button from '../Button/index';
 
 import { connect } from 'react-redux';
 
-import { editMode } from 'ory-editor-core/lib/actions/display';
-import { isEditMode } from 'ory-editor-core/lib/selector/display';
+import { editMode } from '@react-page/core/lib/actions/display';
+import { isEditMode } from '@react-page/core/lib/selector/display';
 import { createStructuredSelector } from 'reselect';
 
 export interface InnerReduxProps {
@@ -37,12 +37,16 @@ export interface InnerActionProps {
   editMode: React.MouseEventHandler<HTMLElement>;
 }
 
-export type InnerProps = InnerReduxProps & InnerActionProps;
+interface OwnProps {
+  label: string;
+}
+
+export type InnerProps = InnerReduxProps & InnerActionProps & OwnProps;
 
 const Inner: React.SFC<InnerProps> = props => (
   <Button
     icon={<Create />}
-    description="Edit things"
+    description={props.label}
     active={props.isEditMode}
     onClick={props.editMode}
   />

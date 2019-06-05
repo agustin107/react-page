@@ -23,8 +23,8 @@
 import * as React from 'react';
 import Spacer from './Component/index';
 import AspectRatio from '@material-ui/icons/AspectRatio';
-import { ContentPluginProps } from 'ory-editor-core/lib/service/plugin/classes';
-import { ContentPluginConfig } from 'ory-editor-core/lib/service/plugin/classes';
+import { ContentPluginProps } from '@react-page/core/lib/service/plugin/classes';
+import { ContentPluginConfig } from '@react-page/core/lib/service/plugin/classes';
 import { SpacerSettings } from './types/settings';
 import { SpacerProps } from './types/component';
 import { SpacerState } from './types/state';
@@ -33,18 +33,19 @@ import { defaultSettings } from './default/settings';
 const createPlugin: (
   settings: SpacerSettings
 ) => ContentPluginConfig<SpacerState> = (
-  settings = defaultSettings
+  settings
 ) => {
+  const mergedSettings = { ...defaultSettings, ...settings };
   const WrappedComponent: React.SFC<SpacerProps> = props => (
-    <Spacer {...props} {...settings} />
+    <Spacer {...props} {...mergedSettings} />
   );
   return {
     Component: WrappedComponent,
     name: 'ory/editor/core/content/spacer',
     version: '0.0.1',
     IconComponent: <AspectRatio />,
-    text: 'Spacer',
-    description: 'Resizeable, empty space.',
+    text: mergedSettings.translations.pluginName,
+    description: mergedSettings.translations.pluginDescription,
   
     handleRemoveHotKey: (_: Event, __: ContentPluginProps): Promise<void> =>
       Promise.reject(),

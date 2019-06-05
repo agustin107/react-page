@@ -819,9 +819,9 @@ Returns **\[...cell]**
 ### Examples
 
 ```javascript
-import { oryReducer } from 'ory-editor-core'
+import { reducer } from '@react-page/core'
 const reducer = combineReducers({
-  ory: oryReducer,
+  reactPage: reducer,
   // ...
 })
 const store = createStore(reducer, null, middleware)
